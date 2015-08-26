@@ -14,7 +14,12 @@ messageField.keypress(function (e) {
     var message = messageField.val();
 
     //SAVE DATA TO FIREBASE AND EMPTY FIELD
-    messagesRef.push({name:username, text:message});
+    elt = {
+      name:username,
+      text:message,
+      type:"client"
+    }
+    messagesRef.push(elt);
     messageField.val('');
   }
 });

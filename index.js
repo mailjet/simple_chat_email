@@ -18,6 +18,7 @@ app.get('/', function (req, res) {
 
 app.post('/', jsonParser, function (req, res) {
 	var message = {
+		type : "email",
 		from : req.body.Headers.From,
 		to : req.body.Headers.To,
 		subject : req.body.Subject,
@@ -25,18 +26,28 @@ app.post('/', jsonParser, function (req, res) {
 		text : req.body["Text-part"]
 	}
 	fb.push(message);
-	res.sendStatus(200)
+	res.sendStatus(200);
+
+	console.log("------NEW MESSAGE FROM EMAIL------");
+	console.log(message);
+	console.log("----------------------------------");
 });
 
 fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
-  var newVal = snapshot.val();
-  var from = newVal.name+"@sharma.fr";
-  var fromName = newVal.name;
-  var subject = "You have a new message from " + newVal.name +"!"
-  var to = "shubham@mailjet.com";
-  var content = newVal.text + "\n\n±±±±± reply after this line ±±±±±±";
-  console.log("sending -> ", from, to, subject, content);
-  mailjet.sendEmail(from, fromName, to, subject, content);
+	var newVal = snapshot.val();
+	if (newVal.type != "email") {
+		var from = newVal.name+"@sharma.fr";
+		var fromName = newVal.name;
+		var subject = "You have a new message from " + newVal.name +"!"
+		var to = "shubham@mailjet.com";
+		var replyto = "11Yl-9lNpPahM7Pt@parse-in1.mailjet.com";
+		var content = newVal.text + "\n\n±±±±± reply after this line ±±±±±±";
+		//mailjet.sendEmail(from, fromName, to, replyto, subject, content);
+
+		console.log("------NEW MESSAGE FROM INTERFACE------");
+		console.log("sending email -> ", fromName, from, replyto, to, subject, content);
+		console.log("--------------------------------------");
+  }
 });
 
 var server = app.listen(1337, function () {

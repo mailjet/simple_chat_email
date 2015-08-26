@@ -8,14 +8,15 @@ client = new Client(options_auth);
 
 
 myFunctions = {
-	sendEmail : function(from, fromName, to, subject, text){
+	sendEmail : function(from, fromName, to, replyto, subject, text){
 		var args = {
 			data: {
 				"FromEmail": from,
 				"FromName": fromName,
 				"Subject": subject,
 				"Text-part": text,
-				"Recipients":[{"Email":to}]
+				"Recipients":[{"Email":to}],
+				"Headers" :{"Reply-To":replyto}
 			},
 			headers:{"Content-Type": "application/json"} 
 		};
