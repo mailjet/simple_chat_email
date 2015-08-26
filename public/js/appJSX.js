@@ -6,7 +6,7 @@ var MessageList = React.createClass({
 			return (
 				<li key={ index }>
 				<strong className='example-chat-username'> {item.name} </strong>
-				<strong className='example-chat-email'> {item.email} </strong>
+				<strong className='example-chat-email'> <{item.email}> </strong>
 				{ item.text }
 				</li>
 			);

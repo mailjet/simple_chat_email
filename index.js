@@ -16,9 +16,9 @@ app.get('/', function (req, res) {
    res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-app.post('/', jsonParser, function (req, res) {
+app.post('/parse/', jsonParser, function (req, res) {
 
-	
+
 	var message = {
 		type : "email",
 		from : req.body.Headers.From,
