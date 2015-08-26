@@ -1,6 +1,4 @@
 // mailjet.js
-
-
 var Client = require('node-rest-client').Client;
 var cred = require("./cred.js");
 
@@ -10,11 +8,11 @@ client = new Client(options_auth);
 
 
 myFunctions = {
-	sendEmail : function(from, to, subject, text){
+	sendEmail : function(from, fromName, to, subject, text){
 		var args = {
 			data: {
 				"FromEmail": from,
-				"FromName": "Mailjet Pilot",
+				"FromName": fromName,
 				"Subject": subject,
 				"Text-part": text,
 				"Recipients":[{"Email":to}]

@@ -9,7 +9,9 @@
   "author": "Shubham SHARMA <shubham@sharma.fr> (http://www.sharma.fr/)",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
-    "firebase": "^2.2.9"
+    "firebase": "^2.2.9",
+    "node-rest-client": "^1.5.1"
   }
 }
