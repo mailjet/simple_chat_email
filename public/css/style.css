@@ -190,3 +190,6 @@
 
 #gameInProgress {
   font-size: 14px; }
+button {
+  display: none;
+}
