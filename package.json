@@ -1,0 +1,15 @@
+{
+  "name": "simple_chat_email",
+  "version": "1.0.0",
+  "description": "Simple email based chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shubham SHARMA <shubham@sharma.fr> (http://www.sharma.fr/)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "firebase": "^2.2.9"
+  }
+}
