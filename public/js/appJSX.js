@@ -81,7 +81,9 @@ var MessageSystem = React.createClass({
 
 	handleSubmit: function(e) {
 		e.preventDefault();
-		if (this.state.text && this.state.text.trim().length !== 0) {
+		if (this.state.text && this.state.text.trim().length !== 0
+			&& this.state.email && this.state.email.trim().length !== 0
+			&& this.state.name && this.state.name.trim().length !== 0) {
 		    elt = {
 		      name:this.state.name,
 		      email:this.state.email,
