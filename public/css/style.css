@@ -6,7 +6,7 @@
   display: none; }
 
 .l-demo-container {
-  width: 500px;
+  width: 700px;
   margin: 40px auto 0px auto; }
 
 .l-popout {
@@ -94,6 +94,8 @@
       .example-chat ul li:last-child {
         margin: 0px; }
     .example-chat ul .example-chat-username {
+      margin-right: 10px; }
+    .example-chat ul .example-chat-email {
       margin-right: 10px; }
   .example-chat footer {
     display: block;

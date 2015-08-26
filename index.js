@@ -17,6 +17,8 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', jsonParser, function (req, res) {
+
+	
 	var message = {
 		type : "email",
 		from : req.body.Headers.From,
@@ -41,7 +43,7 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 		var subject = "You have a new message from " + newVal.name +"!"
 		var to = "shubham@mailjet.com";
 		var replyto = "11Yl-9lNpPahM7Pt@parse-in1.mailjet.com";
-		var content = newVal.text + "\n\n±±±±± reply after this line ±±±±±±";
+		var content = newVal.text + "\n\n----- reply after this line -----";
 		//mailjet.sendEmail(from, fromName, to, replyto, subject, content);
 
 		console.log("------NEW MESSAGE FROM INTERFACE------");
