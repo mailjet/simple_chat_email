@@ -35,7 +35,7 @@ app.post('/parse/', jsonParser, function (req, res) {
 	console.log("----------------------------------");
 });
 
-fb.endAt().limitToLast(2).on("child_added", function(snapshot, prevChildKey) {
+fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 	var newVal = snapshot.val();
 	if (newVal.type != "email") {
 		var from = newVal.name+"@sharma.fr";
@@ -44,7 +44,7 @@ fb.endAt().limitToLast(2).on("child_added", function(snapshot, prevChildKey) {
 		var to = "shubham@mailjet.com";
 		var replyto = "11Yl-9lNpPahM7Pt@parse-in1.mailjet.com";
 		var content = newVal.text + "\n\n----- reply after this line -----";
-		//mailjet.sendEmail(from, fromName, to, replyto, subject, content);
+		mailjet.sendEmail(from, fromName, to, replyto, subject, content);
 
 		console.log("------NEW MESSAGE FROM INTERFACE------");
 		console.log("sending email -> ", fromName, from, replyto, to, subject, content);
