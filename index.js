@@ -18,15 +18,15 @@ app.get('/', function (req, res) {
 
 app.post('/parse/', jsonParser, function (req, res) {
 
-
 	var message = {
 		type : "email",
-		from : req.body.Headers.From,
+		email : req.body.Headers.From,
 		to : req.body.Headers.To,
 		subject : req.body.Subject,
 		date : req.body.Headers.Date,
 		text : req.body["Text-part"]
 	}
+
 	fb.push(message);
 	res.sendStatus(200);
 
@@ -35,7 +35,7 @@ app.post('/parse/', jsonParser, function (req, res) {
 	console.log("----------------------------------");
 });
 
-fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
+fb.endAt().limitToLast(2).on("child_added", function(snapshot, prevChildKey) {
 	var newVal = snapshot.val();
 	if (newVal.type != "email") {
 		var from = newVal.name+"@sharma.fr";

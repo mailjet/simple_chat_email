@@ -19,23 +19,11 @@ var MessageList = React.createClass({
 	}
 });
 
-/** @jsx React.DOM */
-var InfoInput = React.createClass({
-	render: function() {
-
-		return (
-			<div>
-				
-			</div>
-			);
-	}
-});
-
 var MessageSystem = React.createClass({
 	getInitialState: function() {
 		return {
 			items: [],
-			text: '',
+			text: 'loading',
 			name: '',
 		    email: ''
 		};
@@ -92,8 +80,6 @@ var MessageSystem = React.createClass({
 		    }
 			this.firebaseRef.push(elt);
 			this.setState({
-		      name:'',
-		      email:'',
 		      text:'',
 		      type:''
 			});
