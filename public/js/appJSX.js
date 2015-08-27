@@ -23,7 +23,7 @@ var MessageSystem = React.createClass({
 	getInitialState: function() {
 		return {
 			items: [],
-			text: 'loading',
+			text: '',
 			name: '',
 		    email: ''
 		};
