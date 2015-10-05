@@ -1,6 +1,8 @@
 body {
   background-image: url("https://images.unsplash.com/photo-1440964829947-ca3277bd37f8");
   overflow: hidden;
+  background-size: cover;
+  background-position: center center;
 }
 
 .example-base {
