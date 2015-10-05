@@ -132,12 +132,49 @@ var MessageSystem = React.createClass({
 							value={ this.state.text } 
 						/>
 					</footer>
-					<button>I am not going to be displayed</button>
+					<button id="hidingbutton">I am not going to be displayed</button>
 				</form>
+				<ButtonWithDialog/>
 			</div>
 
 			);
 	}
+});
+
+var ButtonWithDialog = React.createClass({
+    render: function() {
+        return <button onClick={this.handleClick}>
+            Click Me!
+        </button>;
+    },
+    renderLayer: function() {
+        if (this.state.clicked) {
+            return <Modal onClose={this.handleClose}>
+                <div className="modal-header">
+                    Header
+                    <a href="javascript: void 0;"
+                       style={{float: "right", textDecoration: "none"}}
+                       onClick={this.handleClose}>
+                        &#215;
+                    </a>
+                </div>
+                <div className="modal-body">Body!</div>
+            </Modal>;
+        } else {
+            return <div />;
+        }
+    },
+    // {{{
+    handleClose: function() {
+        this.setState({ clicked: false });
+    },
+	handleClick: function() {
+		this.setState({ clicked: !this.state.clicked });
+	},
+	getInitialState: function() {
+		return { clicked: false };
+	}
+	// }}}
 });
 
 React.render(<MessageSystem />, document.getElementById('content'));

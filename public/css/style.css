@@ -1,3 +1,8 @@
+body {
+  background-image: url("https://images.unsplash.com/photo-1440964829947-ca3277bd37f8");
+  overflow: hidden;
+}
+
 .example-base {
   font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   color: #333; }
@@ -190,6 +195,6 @@
 
 #gameInProgress {
   font-size: 14px; }
-button {
+button#hidingbutton {
   display: none;
 }
