@@ -31,7 +31,7 @@ var MessageSystem = React.createClass({
 
 	componentWillMount: function() {
 		this.firebaseRef = new Firebase('https://chat-email.firebaseio.com/');
-		this.firebaseRef.limitToLast(25).on('value', function(dataSnapshot) {
+		this.firebaseRef.limitToLast(10).on('value', function(dataSnapshot) {
 			var items = [];
 			dataSnapshot.forEach(function(childSnapshot) {
 				var item = childSnapshot.val();
@@ -91,7 +91,7 @@ var MessageSystem = React.createClass({
 			<div className="example-chat l-demo-container">
 
 				<form onSubmit={ this.handleSubmit }>
-					<header>Email Based chat</header>
+					<header>A simple messaging app</header>
 					<div className='example-chat-toolbar'>
 						<label htmlFor="nameInput">User :</label>
 						<input 
@@ -134,7 +134,6 @@ var MessageSystem = React.createClass({
 					</footer>
 					<button id="hidingbutton">I am not going to be displayed</button>
 				</form>
-				<ButtonWithDialog/>
 			</div>
 
 			);
