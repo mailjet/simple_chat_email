@@ -15,17 +15,18 @@ myFunctions = {
 				"FromName": fromName,
 				"Subject": subject,
 				"Html-part": html,
+				"Sender": "kikou@lol.fr",
 				"Recipients":[{"Email":to}],
 				"Headers" :{"Reply-To":replyto}
 			},
 			headers:{"Content-Type": "application/json"} 
 		};
-		client.post("https://api.mailjet.com/v3/send", args, function(data, response){
-		    // // parsed response body as js object 
-		    // console.log(data);
-		    // // raw response 
-		    // console.log(response);
-		});
+		// client.post("https://api.mailjet.com/v3/send", args, function(data, response){
+		//     // // parsed response body as js object 
+		//     // console.log(data);
+		//     // // raw response 
+		//     // console.log(response);
+		// });
 	}
 	
 }
