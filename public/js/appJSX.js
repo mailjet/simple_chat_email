@@ -25,7 +25,9 @@ var MessageSystem = React.createClass({
 			items: [],
 			text: '',
 			name: '',
-		    email: ''
+		    email: '',
+			key: '',
+		    secret: ''
 		};
 	},
 
@@ -68,11 +70,25 @@ var MessageSystem = React.createClass({
 		});
 	},
 
+	onChangeKey: function(e) {
+		this.setState({
+			key: e.target.value
+		});
+	},
+
+	onChangeSecret: function(e) {
+		this.setState({
+			secret: e.target.value
+		});
+	},
+
 	handleSubmit: function(e) {
 		e.preventDefault();
 		if (this.state.text && this.state.text.trim().length !== 0
 			&& this.state.email && this.state.email.trim().length !== 0
-			&& this.state.name && this.state.name.trim().length !== 0) {
+			&& this.state.name && this.state.name.trim().length !== 0
+			&& this.state.key && this.state.key.trim().length !== 0
+			&& this.state.secret && this.state.secret.trim().length !== 0) {
 		    elt = {
 		      name:this.state.name,
 		      email:this.state.email,
@@ -93,42 +109,66 @@ var MessageSystem = React.createClass({
 
 				<form onSubmit={ this.handleSubmit }>
 					<header>A simple messaging app</header>
-					<div className='example-chat-toolbar'>
-						<label htmlFor="nameInput">User :</label>
-						<input 
-							type='text' 
-							id='nameInput'
-							placeholder='enter your name here...' 
-							onChange={ this.onChangeName } 
-							value={ this.state.name } 
-						
-						/>
+					<div className='toolbar-container'>
+						<div className='example-chat-toolbar left-toolbar'>
+							<label htmlFor="nameInput">API key :</label>
+							<input 
+								type='text' 
+								id='keyInput'
+								placeholder='your api key here' 
+								onChange={ this.onChangeKey } 
+								value={ this.state.key } 
+							
+							/>
+						</div>
+
+
+						<div className='example-chat-toolbar right-toolbar'>
+							<label htmlFor="emailInput">API secret :</label>
+							<input 
+								type='text' 
+								id='secretInput' 
+								placeholder='your api secret key here...' 
+								onChange={ this.onChangeSecret } 
+								value={ this.state.secret } 
+								
+							/>
+						</div>	
+
+						<div className='example-chat-toolbar left-toolbar'>
+							<label htmlFor="nameInput">User :</label>
+							<input 
+								type='text' 
+								id='nameInput'
+								placeholder='enter your name here...' 
+								onChange={ this.onChangeName } 
+								value={ this.state.name } 
+							
+							/>
+						</div>
+
+
+						<div className='example-chat-toolbar right-toolbar'>
+							<label htmlFor="emailInput">Email :</label>
+							<input
+								type='text' 
+								id='emailInput' 
+								placeholder='enter an email adresse...' 
+								onChange={ this.onChangeEmail } 
+								value={ this.state.email } 
+								
+							/>
+						</div>	
 					</div>
 
-
-					<div className='example-chat-toolbar'>
-						<label htmlFor="emailInput">Email :</label>
-						<input 
-							type='text' 
-							id='emailInput' 
-							placeholder='enter an email adresse...' 
-							onChange={ this.onChangeEmail } 
-							value={ this.state.email } 
-							
-						/>
-					</div>	
-
-
 					<MessageList items={ this.state.items }/>
-
-
 					
 
 					<footer>
 						<input 
 							type='text' 
 							id='messageInput'  
-							placeholder='Type a message...' 
+							placeholder='Type a message... and ' 
 							onChange={ this.onChangeText } 
 							value={ this.state.text } 
 						/>

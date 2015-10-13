@@ -47,7 +47,7 @@ body {
     box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
     border-radius: 3px;
     padding: 0px 10px;
-    height: 30px;
+    height: 20px;
     font-size: 18px;
     width: 100%;
     font-weight: normal;
@@ -59,18 +59,30 @@ body {
     position: relative;
     border-bottom: 1px solid #CCC;
 }
+.right-toolbar{
+  width: 47%;
+  float: right;
+}
+.left-toolbar{
+  width: 47%;
+  float: left;
+}
+.toolbar-container{
+  width: 100%;
+}
 .example-chat .example-chat-toolbar label {
     text-transform: uppercase;
     line-height: 32px;
-    font-size: 14px;
+    font-size: 10px;
     color: #999;
     position: absolute;
-    top: 10px;
-    left: 20px;
+    top: 5px;
+    left: 10px;
     z-index: 1;
 }
 .example-chat .example-chat-toolbar input {
     -webkit-box-shadow: none;
+    font-size: 12px;
     box-shadow: none;
     border: 1px solid #FFF;
     padding-left: 100px;
@@ -85,6 +97,7 @@ body {
     list-style: none;
     margin: 0px;
     padding: 20px;
+    width: 100%;
     height: 200px;
     overflow: auto;
 }
