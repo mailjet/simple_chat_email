@@ -1,14 +1,11 @@
 // mailjet.js
 var Client = require('node-rest-client').Client;
-var cred = require("./cred.js");
-
-// configure basic http auth for every request 
-var options_auth={user:cred.MAILJET_API_KEY,password:cred.MAILJET_SECRET_KEY};
-client = new Client(options_auth);
-
 
 myFunctions = {
-	sendEmail : function(from, fromName, to, replyto, subject, html){
+	sendEmail : function(MAILJET_API_KEY, MAILJET_SECRET_KEY, from, fromName, to, replyto, subject, html){
+		// configure basic http auth for every request 
+		var options_auth={user:MAILJET_API_KEY,password:MAILJET_SECRET_KEY};
+		client = new Client(options_auth);
 		var args = {
 			data: {
 				"FromEmail": from,

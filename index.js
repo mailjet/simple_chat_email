@@ -6,6 +6,7 @@ var path = require("path");
 
 var Firebase = require("firebase");
 var fb = new Firebase("https://chat-email.firebaseio.com/");
+var last = "None";
 
 var mailjet = require("./mailjet.js");
 
@@ -36,19 +37,34 @@ app.post('/parse/', jsonParser, function (req, res) {
 	console.log("----------------------------------");
 });
 
+var lastUserEmail = "none";
+var currentUserEmail = "none2";
+
 fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 	var newVal = snapshot.val();
 	if (newVal.type != "email") {
-		var from = newVal.name+"@sharma.fr";
+		last = newVal.email;
+		var from = newVal.email;
 		var fromName = newVal.name;
 		var subject = "You have a new message from " + newVal.name +"!"
-		var to = "shubham@mailjet.com";
+
+		currentUserEmail = newVal.email;
+		var to = lastUserEmail;
+
+		if (lastUserEmail != currentUserEmail)
+			lastUserEmail = currentUserEmail;
+
 		var replyto = "11Yl-9lNpPahM7Pt@parse-in1.mailjet.com";
 		var content = newVal.text + "\n\n----- reply after this line -----";
-		mailjet.sendEmail(from, fromName, to, replyto, subject, content);
+		mailjet.sendEmail(newVal.key, newVal.secret, from, fromName, to, replyto, subject, content);
 
 		console.log("------NEW MESSAGE FROM INTERFACE------");
-		console.log("sending email -> ", fromName, from, replyto, to, subject, content);
+		console.log("sending email -> \nformName :", fromName);
+		console.log("\t from " + from);
+		console.log("\t reply to " + replyto);
+		console.log("\t to " + to);
+		console.log("\t subject " + subject);
+		console.log("\t content " + content);
 		console.log("--------------------------------------");
   }
 });
