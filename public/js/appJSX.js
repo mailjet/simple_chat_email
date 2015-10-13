@@ -78,7 +78,7 @@ var MessageSystem = React.createClass({
 		      email:this.state.email,
 		      text:this.state.text,
 		      type:"client"
-		    }
+		    };
 			this.firebaseRef.push(elt);
 			this.setState({
 		      text:'',

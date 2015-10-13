@@ -12,6 +12,11 @@ var mailjet = require("./mailjet.js");
 app.use(express.static('public'));
 var jsonParser = bodyParser.json();
 
+app.get('/', function (req, res) {
+   res.sendFile(path.join(__dirname+'/index.html'));
+});
+
+
 app.post('/parse/', jsonParser, function (req, res) {
 
 	var message = {
