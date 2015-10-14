@@ -33,7 +33,6 @@ var MessageSystem = React.createClass({
 
 	componentWillMount: function() {
 		this.firebaseRef = new Firebase('https://chat-email.firebaseio.com/');
-		this.firebaseRefUsers = new Firebase('https://chat-email.firebaseio.com/users/');
 		this.firebaseRef.limitToLast(10).on('value', function(dataSnapshot) {
 			var items = [];
 			dataSnapshot.forEach(function(childSnapshot) {
@@ -92,6 +91,8 @@ var MessageSystem = React.createClass({
 		    elt = {
 		      name:this.state.name,
 		      email:this.state.email,
+		      key:this.state.key,
+		      secret:this.state.secret,
 		      text:this.state.text,
 		      type:"client"
 		    };

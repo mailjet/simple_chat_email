@@ -9,7 +9,6 @@ var fb = new Firebase("https://chat-email.firebaseio.com/");
 var last = "None";
 
 var mailjet = require("./mailjet.js");
-
 app.use(express.static('public'));
 var jsonParser = bodyParser.json();
 
@@ -56,6 +55,7 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 
 		var replyto = "11Yl-9lNpPahM7Pt@parse-in1.mailjet.com";
 		var content = newVal.text + "\n\n----- reply after this line -----";
+		console.log("DUMP SENDMAIL" + newVal.key, newVal.secret, from, fromName, to, replyto, subject, content);
 		mailjet.sendEmail(newVal.key, newVal.secret, from, fromName, to, replyto, subject, content);
 
 		console.log("------NEW MESSAGE FROM INTERFACE------");
@@ -75,4 +75,5 @@ var server = app.listen(1337, function () {
 
   console.log('App listening at http://%s:%s', host, port);
 });
+
 
