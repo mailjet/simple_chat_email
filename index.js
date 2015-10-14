@@ -69,7 +69,7 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
   }
 });
 
-var server = app.listen(1337, function () {
+var server = app.listen(1339, function () {
   var host = server.address().address;
   var port = server.address().port;
 
