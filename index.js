@@ -21,16 +21,16 @@ var currentUserEmail = "none2";
 
 app.post('/parse/', jsonParser, function (req, res) {
 
-	currentUserEmail = req.body.Headers.From;
+	currentUserEmail = req.body.Sender;
 	console.log("currentUserEmail : " + currentUserEmail);
 
 	var message = {
 		type : "email",
-		email : req.body.Sender,
+		email : currentUserEmail,
 		to : req.body.Headers.To,
 		subject : req.body.Subject,
 		date : req.body.Headers.Date,
-		text : req.body["Text-part"]
+		text : req.body["Text-part"].split("------------------------")[0];
 	}
 	if (lastUserEmail != currentUserEmail)
 		lastUserEmail = currentUserEmail;
@@ -50,7 +50,7 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 		last = newVal.email;
 		var from = newVal.email;
 		var fromName = newVal.name;
-		var subject = "You have a new message from " + newVal.name +"!"
+		var subject = "[Simple message app] You have a new message from " + newVal.name +"!"
 
 		currentUserEmail = newVal.email;
 		var to = lastUserEmail;
@@ -60,7 +60,7 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 
 
 		var replyto = "simple-email-demo@parse-in1.mailjet.com";
-		var content = newVal.text;
+		var content = "------------------------<br>" + newVal.text;
 		
 		console.log("DUMP SENDMAIL" + newVal.key, newVal.secret, from, fromName, to, replyto, subject, content);
 
