@@ -168,7 +168,7 @@ var MessageSystem = React.createClass({
 						<input 
 							type='text' 
 							id='messageInput'  
-							placeholder='Type a message... and ' 
+							placeholder='Type a message and press enter...' 
 							onChange={ this.onChangeText } 
 							value={ this.state.text } 
 						/>
