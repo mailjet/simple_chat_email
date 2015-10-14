@@ -16,8 +16,13 @@ app.get('/', function (req, res) {
    res.sendFile(path.join(__dirname+'/index.html'));
 });
 
+var lastUserEmail = "none";
+var currentUserEmail = "none2";
 
 app.post('/parse/', jsonParser, function (req, res) {
+
+	currentUserEmail = req.body.Headers.From;
+	console.log("currentUserEmail : " + currentUserEmail);
 
 	var message = {
 		type : "email",
@@ -27,6 +32,8 @@ app.post('/parse/', jsonParser, function (req, res) {
 		date : req.body.Headers.Date,
 		text : req.body["Text-part"]
 	}
+	if (lastUserEmail != currentUserEmail)
+		lastUserEmail = currentUserEmail;
 
 	fb.push(message);
 	res.sendStatus(200);
@@ -36,8 +43,6 @@ app.post('/parse/', jsonParser, function (req, res) {
 	console.log("----------------------------------");
 });
 
-var lastUserEmail = "none";
-var currentUserEmail = "none2";
 
 fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 	var newVal = snapshot.val();
@@ -53,9 +58,12 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 		if (lastUserEmail != currentUserEmail)
 			lastUserEmail = currentUserEmail;
 
-		var replyto = "11Yl-9lNpPahM7Pt@parse-in1.mailjet.com";
-		var content = newVal.text + "\n\n----- reply after this line -----";
+		
+		var replyto = "simple-email-demo@parse-in1.mailjet.com";
+		var content = newVal.text;
+		
 		console.log("DUMP SENDMAIL" + newVal.key, newVal.secret, from, fromName, to, replyto, subject, content);
+
 		mailjet.sendEmail(newVal.key, newVal.secret, from, fromName, to, replyto, subject, content);
 
 		console.log("------NEW MESSAGE FROM INTERFACE------");

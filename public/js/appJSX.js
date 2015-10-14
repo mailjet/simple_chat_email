@@ -164,7 +164,6 @@ var MessageSystem = React.createClass({
 
 					<MessageList items={ this.state.items }/>
 					
-
 					<footer>
 						<input 
 							type='text' 
