@@ -30,7 +30,7 @@ app.post('/parse/', jsonParser, function (req, res) {
 		to : req.body.Headers.To,
 		subject : req.body.Subject,
 		date : req.body.Headers.Date,
-		text : req.body["Text-part"].split("------------------------")[0];
+		text : req.body["Text-part"].split("------------------------")[0]
 	}
 	if (lastUserEmail != currentUserEmail)
 		lastUserEmail = currentUserEmail;
