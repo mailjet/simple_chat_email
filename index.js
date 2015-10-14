@@ -26,7 +26,7 @@ app.post('/parse/', jsonParser, function (req, res) {
 
 	var message = {
 		type : "email",
-		email : req.body.Headers.From,
+		email : req.body.Sender,
 		to : req.body.Headers.To,
 		subject : req.body.Subject,
 		date : req.body.Headers.Date,
@@ -58,7 +58,7 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 		if (lastUserEmail != currentUserEmail)
 			lastUserEmail = currentUserEmail;
 
-		
+
 		var replyto = "simple-email-demo@parse-in1.mailjet.com";
 		var content = newVal.text;
 		
