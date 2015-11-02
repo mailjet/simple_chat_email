@@ -33,6 +33,7 @@ $> npm start
 ```
 
 ## The flow
+```
 
 
 
@@ -58,6 +59,7 @@ $> npm start
 							-----------------
 							|  Firebase db	|
 							-----------------
+```
 
 ### Message interface
 This interface is visible on https://reply-by-email-demo.mailjet.com/
