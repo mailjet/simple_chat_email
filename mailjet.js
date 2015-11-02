@@ -19,9 +19,7 @@ myFunctions = {
 			headers:{"Content-Type": "application/json"} 
 		};
 		client.post("https://api.mailjet.com/v3/send", args, function(data, response){
-		    // parsed response body as js object 
-		    // console.log(data);
-		    // raw response 
+		    // Here is the email being sent via the Mailjet's Parse API using the user API keys.
 		    console.log(response.statusCode);
 		});
 	}

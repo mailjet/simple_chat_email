@@ -71,6 +71,8 @@ Otherwise it will render the file index.html if you perform a GET request on it.
 ### ParseAPI
 This one is the inbound API of Mailjet. every single time that someone reply by email, a POST request is triggered with the content of the message and sent to index.js.
 
+You need to configure the Parse API webhook. Here is a full guide which explains how to do it.
+
 ### Firebase Database
 This database is keeping every messages of the chat and on every update of this list of message. it updates the Message interface.
 There is no need to setup anything in this app as everything is handled by a allready configured database.

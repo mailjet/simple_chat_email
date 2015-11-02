@@ -5,6 +5,7 @@ var path = require("path");
 
 
 var Firebase = require("firebase");
+// If you want to choose your owne database, make sure you change this firebase link
 var fb = new Firebase("https://chat-email.firebaseio.com/");
 var last = "None";
 
@@ -12,6 +13,8 @@ var mailjet = require("./mailjet.js");
 app.use(express.static('public'));
 var jsonParser = bodyParser.json();
 
+
+// Here is the GET / Handeling to get message interface in index.html and js/appJSX.js
 app.get('/', function (req, res) {
    res.sendFile(path.join(__dirname+'/index.html'));
 });
@@ -19,22 +22,26 @@ app.get('/', function (req, res) {
 var lastUserEmail = "none";
 var currentUserEmail = "none2";
 
+// This is waiting for a POST from the Parse API. Make sure you configured the webhook using the mailjet's API
 app.post('/parse/', jsonParser, function (req, res) {
 
 	currentUserEmail = req.body.Sender;
 	console.log("currentUserEmail : " + currentUserEmail);
 
+	// Parsing all the json information that we received
 	var message = {
 		type : "email",
 		email : currentUserEmail,
 		to : req.body.Headers.To,
 		subject : req.body.Subject,
 		date : req.body.Headers.Date,
+		// We make sure that we are just taking the upper part of the message
 		text : req.body["Text-part"].split("------------------------")[0];
 	}
 	if (lastUserEmail != currentUserEmail)
 		lastUserEmail = currentUserEmail;
 
+	// Pushing the message in the db
 	fb.push(message);
 	res.sendStatus(200);
 
@@ -43,9 +50,11 @@ app.post('/parse/', jsonParser, function (req, res) {
 	console.log("----------------------------------");
 });
 
-
+// Whenerver a new message is added in the db we trigger this
 fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 	var newVal = snapshot.val();
+
+	// if the message is added in the room via the interface we sends an email
 	if (newVal.type != "email") {
 		last = newVal.email;
 		var from = newVal.email;
@@ -77,6 +86,7 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
   }
 });
 
+// You can change the port of this server at your convinience
 var server = app.listen(1339, function () {
   var host = server.address().address;
   var port = server.address().port;
