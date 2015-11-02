@@ -1,5 +1,7 @@
 #Reply by email, simple messaging app
 
+![screenshot](http://img11.hostingpics.net/pics/386142ScreenShot20151102at112634.png)
+
 ## What it is this about ?
 You might know email service providers for their reputation of doing a great job of delivering your email, but did you know some also provide additional tools to set up “reply by email” systems?. 
 
@@ -10,7 +12,7 @@ Here is the blog post explaining what are the different use cases of this "reply
 
 
 ## The online demo
-You can test the demo on this link : https://reply-by-email-demo.mailjet.com/
+You can test the demo on this link : [https://reply-by-email-demo.mailjet.com/](http://bit.ly/reply-by-email_demo)
 
 ##Installation process
 
@@ -87,6 +89,10 @@ This module is using the Mailjet sendAPI to be able to send a message when a use
 -	A real User system (with Google SSO for example)
 -	User mention on the interface
 -	A better design
+
+
+##Contact me
+If you have any problem or issue using it open an issue on the repo or directly contact me on shubham[at]mailjet.com
 
 
 
