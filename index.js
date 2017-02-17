@@ -2,11 +2,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var path = require("path");
-
+var config = require("./config.js")
 
 var Firebase = require("firebase");
 // If you want to choose your owne database, make sure you change this firebase link
-var fb = new Firebase("https://chat-email.firebaseio.com/");
+var fb = new Firebase(config.firebase_url);
 var last = "None";
 
 var mailjet = require("./mailjet.js");
@@ -36,7 +36,7 @@ app.post('/parse/', jsonParser, function (req, res) {
 		subject : req.body.Subject,
 		date : req.body.Headers.Date,
 		// We make sure that we are just taking the upper part of the message
-		text : req.body["Text-part"].split("------------------------")[0];
+		text : req.body["Text-part"].split("------------------------")[0]
 	}
 	if (lastUserEmail != currentUserEmail)
 		lastUserEmail = currentUserEmail;
@@ -70,7 +70,7 @@ fb.endAt().limitToLast(1).on("child_added", function(snapshot, prevChildKey) {
 
 		var replyto = "simple-email-demo@parse-in1.mailjet.com";
 		var content = "------------------------<br>" + newVal.text;
-		
+
 		console.log("DUMP SENDMAIL" + newVal.key, newVal.secret, from, fromName, to, replyto, subject, content);
 
 		mailjet.sendEmail(newVal.key, newVal.secret, from, fromName, to, replyto, subject, content);
@@ -93,5 +93,3 @@ var server = app.listen(1339, function () {
 
   console.log('App listening at http://%s:%s', host, port);
 });
-
-
